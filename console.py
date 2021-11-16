@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Documentation for the consule module"""
+"""Documentation for console"""
 
 
 import cmd
@@ -9,35 +9,34 @@ from models.engine.file_storage import FileStorage
 
 
 class HBNBCommand(cmd.Cmd):
-    """Documentation for the console class which uses cCmd
-    public class which is used for command line purpose."""
+    """conole class using cmd public class for CLI"""
 
     prompt = '(hbnb) '
-    argv = sys.argv[1:]
+    classes = ["Ameenity", "User"]
 
     def do_create(self, name):
+        """Create module"""
         if name:
             name = BaseModel()
             with open(FileStorage.__file_path, 'w') as f:
-                json.dump(name, f)
+                json. dump(name, f)
             with open(FileStorage.__file_path, 'r') as f:
                 for key, value in FileStorage.__file_path.items():
                     if (key == "id"):
                         print(value)
         else:
-            print("**class name missing **")
+            print("** class name missing **")
 
     def do_show(self):
         pass
 
     def do_EOF(self, line):
-        """Function for handling End of file or end of line"""
+        """Handling end of ile"""
         return True
 
     def do_quit(self, line):
-        """Function to implement clean exit"""
+        """handling quit"""
         return True
-
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()

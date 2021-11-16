@@ -21,13 +21,17 @@ class FileStorage():
     def save(self):
         """serializes __objects to the json file"""
         new_dict = {}
-        for i in self.__objects:
-            new_dicti[ = self.__objects[i].to_dict()
-        with open(self__file_path, 'w') as fil:
-            json.dump(new_dict, fil)
+        for i in FileStorage.__objects:
+            new_dict[i] = self.__objects[i].to_dict()
+            with open(self.__file_path, 'w') as fil:
+                json.dump(new_dict, fil)
 
     def reload(self):
         """deserializes the Json file to __objects."""
-        if os.path.exists(_file_path) is True:
-            with open(__file_path, 'r') as f:
-                __objects = json.load(f)
+        try:
+            with open(self.__file_path, 'r') as f:
+                json_file = json.load(f)
+                for key in json_file:
+                    self.__objects[key] = classes[json_file[key]["__class__"]](**json_file[key])
+        except:
+            pass
